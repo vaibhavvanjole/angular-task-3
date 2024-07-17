@@ -1,0 +1,31 @@
+<div class="row mt-5">
+    <div class="col-md-5">
+        <div class="card">
+            <div class="card-body">
+                <form (ngSubmit)="onSubmit()" [formGroup]="myForm">
+                    <div class="form-group">
+                        <label for="sh" class="h6">Section Header</label>
+                        <input type="text" id="sh" class="form-control" formControlName="sectionHeader">
+                        <span *ngIf="myForm.get('sectionHeader').invalid && myForm.get('sectionHeader').touched" class="text-danger">Section header is required</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="sd" class="h6">Section Details</label>
+                       <textarea id="sd" cols="30" rows="10" class="form-control" formControlName="sectionDetails"></textarea>
+                       <span *ngIf="myForm.get('sectionDetails').invalid && myForm.get('sectionDetails').touched" class="text-danger">Section details is required</span>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-block" [disabled]="!myForm.valid">Add</button>
+                </form>
+            </div>
+          </div>
+
+    </div>
+    <div class="col-md-7">
+        <p-accordion>
+           <ng-container *ngFor="let sec of secListArray">
+            <p-accordionTab header={{sec.secHeader}}>
+                <p>{{sec.secDetails}}</p>
+            </p-accordionTab>
+           </ng-container>
+        </p-accordion>
+    </div>
+</div>
